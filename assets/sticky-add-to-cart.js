@@ -188,7 +188,7 @@ class StickyAddToCartComponent extends Component {
 
     await onAnimationEnd([this.refs.addToCartButton, flyToCartElement]);
     this.#resetTimeout = setTimeout(() => {
-      this.refs.addToCartButton.removeAttribute('data-added');
+      delete this.refs.addToCartButton.dataset.added;
     }, 800);
   };
 
@@ -209,14 +209,14 @@ class StickyAddToCartComponent extends Component {
     if (!newStickyBar) return;
 
     // Store current visibility state before morphing
-    const currentStuck = this.refs.stickyBar.getAttribute('data-stuck') || 'false';
+    const currentStuck = this.refs.stickyBar.dataset.stuck || 'false';
     const variantAvailable = newStickyAddToCart.dataset.variantAvailable;
 
     // Morph the entire sticky bar content
     morph(this.refs.stickyBar, newStickyBar, { childrenOnly: true });
 
     // Restore visibility state after morphing
-    this.refs.stickyBar.setAttribute('data-stuck', currentStuck);
+    this.refs.stickyBar.dataset.stuck = currentStuck;
     this.dataset.variantAvailable = variantAvailable;
 
     // Update the dataset attributes with new variant info

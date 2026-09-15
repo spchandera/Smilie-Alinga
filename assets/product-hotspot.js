@@ -133,7 +133,7 @@ export class ProductHotspotComponent extends Component {
     dialog.style.visibility = 'hidden';
     dialog.style.display = 'block';
     dialog.style.transform = 'none';
-    dialog.removeAttribute('data-placement');
+    delete dialog.dataset.placement;
 
     const { width: dialogWidth, height: dialogHeight } = dialog.getBoundingClientRect();
 

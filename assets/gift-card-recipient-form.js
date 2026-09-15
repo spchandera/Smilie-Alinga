@@ -274,7 +274,7 @@ class GiftCardRecipientForm extends Component {
     const currentLength = this.refs.recipientMessage.value.length;
     const maxLength = this.refs.recipientMessage.maxLength;
 
-    const template = this.refs.characterCount.getAttribute('data-template');
+    const template = this.refs.characterCount.dataset.template;
     if (!template) return;
 
     const updatedText = template.replace('[current]', currentLength.toString()).replace('[max]', maxLength.toString());

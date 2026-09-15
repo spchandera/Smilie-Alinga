@@ -58,7 +58,7 @@ class DeferredMedia extends Component {
    * @param {boolean} [focus] - Whether to focus the content
    */
   loadContent(focus = true) {
-    if (this.getAttribute('data-media-loaded')) return;
+    if (this.dataset.mediaLoaded) return;
 
     this.dispatchEvent(new MediaStartedPlayingEvent(this));
 
@@ -66,7 +66,7 @@ class DeferredMedia extends Component {
 
     if (!content) return;
 
-    this.setAttribute('data-media-loaded', 'true');
+    this.dataset.mediaLoaded = 'true';
     this.appendChild(content);
 
     if (focus && content instanceof HTMLElement) {
@@ -135,7 +135,7 @@ class DeferredMedia extends Component {
     this.isPlaying = false;
 
     // If we've already revealed the deferred media, we should toggle the play/pause hint
-    if (this.getAttribute('data-media-loaded')) {
+    if (this.dataset.mediaLoaded) {
       this.updatePlayPauseHint(this.isPlaying);
     }
   }

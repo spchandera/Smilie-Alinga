@@ -21,11 +21,11 @@ import { morph } from '@theme/morph';
  */
 export class ProductCardLink extends Component {
   get productTransitionEnabled() {
-    return this.getAttribute('data-product-transition') === 'true';
+    return this.dataset.productTransition === 'true';
   }
 
   get featuredMediaUrl() {
-    return this.getAttribute('data-featured-media-url');
+    return this.dataset.featuredMediaUrl;
   }
 
   /**
@@ -57,8 +57,8 @@ export class ProductCardLink extends Component {
 
     if (activeImage instanceof HTMLImageElement) this.#setImageSrcset(activeImage);
 
-    cardGallery.setAttribute('data-view-transition-type', 'product-image-transition');
-    cardGallery.setAttribute('data-view-transition-triggered', 'true');
+    cardGallery.dataset.viewTransitionType = 'product-image-transition';
+    cardGallery.dataset.viewTransitionTriggered = 'true';
   }
 
   /**
@@ -229,7 +229,7 @@ export class ProductCard extends ProductCardLink {
     this.#previousSlideIndex = null;
 
     // Remove attribute after re-rendering since a variant selection has been made
-    this.removeAttribute('data-no-swatch-selected');
+    delete this.dataset.noSwatchSelected;
 
     // Force overflow list to reflow after variant update
     // This fixes an issue where the overflow counter doesn't update properly in some browsers
@@ -278,11 +278,11 @@ export class ProductCard extends ProductCardLink {
   #updateProductUrl(event) {
     const responseProductCard = event.detail.data.html?.querySelector('product-card');
     const anchorElement = responseProductCard?.querySelector('a');
-    const featuredMediaUrl = responseProductCard?.getAttribute('data-featured-media-url');
+    const featuredMediaUrl = responseProductCard?.dataset.featuredMediaUrl;
 
     // Update the featured media URL for view transitions (inherited from ProductCardLink)
     if (featuredMediaUrl) {
-      this.setAttribute('data-featured-media-url', featuredMediaUrl);
+      this.dataset.featuredMediaUrl = featuredMediaUrl;
     }
 
     if (anchorElement instanceof HTMLAnchorElement) {
@@ -477,7 +477,7 @@ export class ProductCard extends ProductCardLink {
     if (!(event.target instanceof Element)) return;
 
     // Don't navigate if this product card is marked as no-navigation (e.g., in theme editor)
-    if (this.hasAttribute('data-no-navigation')) return;
+    if (this.dataset.noNavigation) return;
 
     const interactiveElement = event.target.closest('button, input, label, select, [tabindex="1"]');
 

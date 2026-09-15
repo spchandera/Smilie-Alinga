@@ -51,7 +51,7 @@ export class QuantitySelectorComponent extends Component {
    * @param {number} cartQty - The quantity currently in cart for this variant
    */
   setCartQuantity(cartQty) {
-    this.refs.quantityInput.setAttribute('data-cart-quantity', cartQty.toString());
+    this.refs.quantityInput.dataset.cartQuantity = cartQty.toString();
     this.updateCartQuantity();
   }
 
@@ -139,7 +139,7 @@ export class QuantitySelectorComponent extends Component {
       max: parseIntOrDefault(quantityInput.max, null),
       step: parseIntOrDefault(quantityInput.step, 1),
       value: parseIntOrDefault(quantityInput.value, 0),
-      cartQuantity: parseIntOrDefault(quantityInput.getAttribute('data-cart-quantity'), 0),
+      cartQuantity: parseIntOrDefault(quantityInput.dataset.cartQuantity, 0),
     };
   }
 

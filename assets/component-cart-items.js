@@ -290,7 +290,7 @@ class CartItemsComponent extends Component {
         const input = selector.querySelector('input[data-cart-quantity]');
         if (!input) continue;
 
-        input.setAttribute('data-cart-quantity', item.quantity.toString());
+        input.dataset.cartQuantity = item.quantity.toString();
 
         // Update the quantity selector's internal state
         if ('updateCartQuantity' in selector && typeof selector.updateCartQuantity === 'function') {

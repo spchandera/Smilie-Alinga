@@ -22,7 +22,7 @@ class QRCodeImage extends Component {
     this.#alt = this.getAttribute('alt') ?? this.#alt;
 
     new QRCode(this, {
-      text: this.getAttribute('data-identifier') || '',
+      text: this.dataset.identifier || '',
       width: this.#width,
       height: this.#height,
       alt: this.#alt,

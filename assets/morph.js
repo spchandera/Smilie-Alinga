@@ -211,9 +211,9 @@ function walk(newNode, oldNode, options) {
   // We can morph, update the node and its children
   if (
     oldNode instanceof Element &&
-    oldNode.hasAttribute('data-skip-node-update') &&
+    'skipNodeUpdate' in oldNode.dataset &&
     newNode instanceof Element &&
-    newNode.hasAttribute('data-skip-node-update')
+    'skipNodeUpdate' in newNode.dataset
   ) {
     // This is a special case where we don't want to morph the node, but we want to morph the children
     updateChildren(newNode, oldNode, options);
@@ -455,9 +455,9 @@ function recreateAppBlockScripts(container) {
 function updateChildren(newNode, oldNode, options) {
   if (
     oldNode instanceof Element &&
-    oldNode.hasAttribute('data-skip-subtree-update') &&
+    'skipSubtreeUpdate' in oldNode.dataset &&
     newNode instanceof Element &&
-    newNode.hasAttribute('data-skip-subtree-update')
+    'skipSubtreeUpdate' in newNode.dataset
   ) {
     return;
   }

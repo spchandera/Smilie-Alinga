@@ -294,8 +294,8 @@ class PriceFacetComponent extends Component {
     const value = this.#parseDisplayValue(input.value, currency);
 
     // data-min and data-max now contain raw minor unit values (not formatted)
-    const min = this.#parseDisplayValue(input.getAttribute('data-min') ?? '0', currency);
-    const max = this.#parseDisplayValue(input.getAttribute('data-max') ?? '0', currency);
+    const min = this.#parseDisplayValue(input.dataset.min ?? '0', currency);
+    const max = this.#parseDisplayValue(input.dataset.max ?? '0', currency);
 
     if (value < min) {
       input.value = formatMoney(min, moneyFormat, currency);
@@ -310,10 +310,10 @@ class PriceFacetComponent extends Component {
   #setMinAndMaxValues() {
     const { minInput, maxInput } = this.refs;
 
-    if (maxInput.value) minInput.setAttribute('data-max', maxInput.value);
-    if (minInput.value) maxInput.setAttribute('data-min', minInput.value);
-    if (minInput.value === '') maxInput.setAttribute('data-min', '0');
-    if (maxInput.value === '') minInput.setAttribute('data-max', maxInput.getAttribute('data-max') ?? '');
+    if (maxInput.value) minInput.dataset.max = maxInput.value;
+    if (minInput.value) maxInput.dataset.min = minInput.value;
+    if (minInput.value === '') maxInput.dataset.min = '0';
+    if (maxInput.value === '') minInput.dataset.max = maxInput.dataset.max ?? '';
   }
 
   /**

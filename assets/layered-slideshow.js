@@ -230,7 +230,7 @@ export class LayeredSlideshowComponent extends Component {
 
     if (wasMobile !== this.#isMobile) {
       const { container } = this.refs;
-      container.setAttribute('data-instant-transitions', '');
+      container.dataset.instantTransitions = '';
 
       this.#clearHeightStyles();
       // Re-calculate height first so grid calculation has correct container dimensions
@@ -239,7 +239,7 @@ export class LayeredSlideshowComponent extends Component {
       this.#setupEventListeners();
 
       requestAnimationFrame(() => {
-        container.removeAttribute('data-instant-transitions');
+        delete container.dataset.instantTransitions;
       });
     }
   };
@@ -274,7 +274,7 @@ export class LayeredSlideshowComponent extends Component {
     if (!tabs || index === this.#active || index < 0 || index >= tabs.length) return;
 
     if (instant) {
-      container.setAttribute('data-instant-transitions', '');
+      container.dataset.instantTransitions = '';
     }
 
     this.#active = index;
@@ -284,7 +284,7 @@ export class LayeredSlideshowComponent extends Component {
       // Double rAF to ensure layout is fully settled before re-enabling transitions
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          container.removeAttribute('data-instant-transitions');
+          delete container.dataset.instantTransitions;
         });
       });
     }
@@ -407,7 +407,7 @@ export class LayeredSlideshowComponent extends Component {
         }
       }
       this.#drag.dragging = true;
-      container.setAttribute('data-dragging', '');
+      container.dataset.dragging = '';
     }
 
     if (!this.#drag.dragging) return;

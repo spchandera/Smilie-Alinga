@@ -149,7 +149,7 @@ export class AddToCartComponent extends Component {
 
     // Create new timeout and store it in the array
     const timeoutId = setTimeout(() => {
-      addToCartButton.removeAttribute('data-added');
+      delete addToCartButton.dataset.added;
 
       // Remove this timeout from the array
       const index = this.#resetTimeouts.indexOf(timeoutId);

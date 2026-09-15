@@ -27,7 +27,7 @@ document.addEventListener('shopify:block:select', function (event) {
     // First, remove data-no-navigation from any previously selected product cards
     document.querySelectorAll('product-card[data-no-navigation]').forEach((card) => {
       if (card instanceof HTMLElement) {
-        card.removeAttribute('data-no-navigation');
+        delete card.dataset.noNavigation;
       }
     });
 
@@ -39,7 +39,7 @@ document.addEventListener('shopify:block:select', function (event) {
 
         productCardsInSection.forEach((card) => {
           if (card instanceof HTMLElement) {
-            card.setAttribute('data-no-navigation', 'true');
+            card.dataset.noNavigation = 'true';
           }
         });
       }
@@ -117,7 +117,7 @@ document.addEventListener('shopify:block:deselect', function (event) {
   if (event.target instanceof HTMLElement) {
     // Remove data-no-navigation when product card is deselected
     if (event.target.tagName === 'PRODUCT-CARD') {
-      event.target.removeAttribute('data-no-navigation');
+      delete event.target.dataset.noNavigation;
     }
 
     /** @type {import('./slideshow').Slideshow | null} */

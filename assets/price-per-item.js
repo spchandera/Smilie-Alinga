@@ -97,7 +97,7 @@ class PricePerItemComponent extends Component {
     if (!quantityInput) return 1;
 
     // Read the current cart quantity from the data attribute
-    const cartQty = Number.parseInt(quantityInput.getAttribute('data-cart-quantity') || '0') || 0;
+    const cartQty = Number.parseInt(quantityInput.dataset.cartQuantity || '0') || 0;
     // Read the current input value (quantity to add)
     const inputQty = Number.parseInt(quantityInput.value) || 1;
 
