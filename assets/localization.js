@@ -22,9 +22,9 @@ class LocalizationFormComponent extends Component {
   connectedCallback() {
     super.connectedCallback();
 
-    this.refs.search && this.refs.search.addEventListener('keydown', this.#onSearchKeyDown);
-    this.refs.countryList && this.refs.countryList.addEventListener('keydown', this.#onContainerKeyDown);
-    this.refs.countryList && this.refs.countryList.addEventListener('scroll', this.#onCountryListScroll);
+    this.refs.search?.addEventListener('keydown', this.#onSearchKeyDown);
+    this.refs.countryList?.addEventListener('keydown', this.#onContainerKeyDown);
+    this.refs.countryList?.addEventListener('scroll', this.#onCountryListScroll);
 
     // Resizing the language input can be expensive for browsers that don't support field-sizing: content.
     // Spliting it into separate tasks at least helps when there are multiple localization forms on the page.
@@ -33,9 +33,9 @@ class LocalizationFormComponent extends Component {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.refs.search && this.refs.search.removeEventListener('keydown', this.#onSearchKeyDown);
-    this.refs.countryList && this.refs.countryList.removeEventListener('keydown', this.#onContainerKeyDown);
-    this.refs.countryList && this.refs.countryList.removeEventListener('scroll', this.#onCountryListScroll);
+    this.refs.search?.removeEventListener('keydown', this.#onSearchKeyDown);
+    this.refs.countryList?.removeEventListener('keydown', this.#onContainerKeyDown);
+    this.refs.countryList?.removeEventListener('scroll', this.#onCountryListScroll);
   }
 
   /**

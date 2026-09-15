@@ -114,7 +114,7 @@ class PricePerItemComponent extends Component {
 
     // Price breaks are sorted descending, find first tier that quantity qualifies for
     const priceBreak =
-      this.#priceBreaks.find((pb) => quantity >= pb.quantity) ?? this.#priceBreaks[this.#priceBreaks.length - 1];
+      this.#priceBreaks.find((pb) => quantity >= pb.quantity) ?? this.#priceBreaks.at(-1);
 
     if (priceBreak) {
       this.refs.pricePerItemText.innerHTML = `${this.dataset.atText} ${priceBreak.price}/${this.dataset.eachText}`;

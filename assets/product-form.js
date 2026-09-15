@@ -596,7 +596,7 @@ class ProductFormComponent extends Component {
     const quantityLabel = this.refs.quantityLabelCartCount;
     if (quantityLabel) {
       const inCartText = quantityLabel.textContent?.match(/\((\d+)\s+(.+)\)/);
-      if (inCartText && inCartText[2]) {
+      if (inCartText?.[2]) {
         quantityLabel.textContent = `(${cartQty} ${inCartText[2]})`;
       }
 

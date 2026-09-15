@@ -710,7 +710,7 @@ function apply() {
             return null;
           }
           const targetElement = popoverTargetAssociatedElements.get(this);
-          if (targetElement && targetElement.isConnected) {
+          if (targetElement?.isConnected) {
             return targetElement;
           } else if (targetElement && !targetElement.isConnected) {
             popoverTargetAssociatedElements.delete(this);

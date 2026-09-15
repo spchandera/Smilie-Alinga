@@ -45,7 +45,7 @@ export class ProductCardLink extends Component {
     if (!this.productTransitionEnabled) return;
 
     const { cardGallery } = this.refs;
-    if (!cardGallery || !cardGallery.hasAttribute('data-view-transition-to-main-product')) return;
+    if (!cardGallery || !('viewTransitionToMainProduct' in cardGallery.dataset)) return;
 
     // Check on the current active image, whether it's a product card image or a resource card image
     const { imagesToTransition } = this.refs;
@@ -499,7 +499,7 @@ export class ProductCard extends ProductCardLink {
       const url = new URL(window.location.href);
       const parent = this.closest('li');
       url.hash = productCardAnchor;
-      if (parent && parent.dataset.page) {
+      if (parent?.dataset.page) {
         url.searchParams.set('page', parent.dataset.page);
       }
 

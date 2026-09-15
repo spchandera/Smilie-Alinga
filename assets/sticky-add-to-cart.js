@@ -220,7 +220,7 @@ class StickyAddToCartComponent extends Component {
     this.dataset.variantAvailable = variantAvailable;
 
     // Update the dataset attributes with new variant info
-    if (variant && variant.id) {
+    if (variant?.id) {
       this.dataset.currentVariantId = variant.id;
     }
 

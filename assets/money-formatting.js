@@ -74,7 +74,7 @@ export function convertMoneyToMinorUnits(value, currency) {
   const precision = CURRENCY_DECIMALS[currency.toUpperCase()] ?? DEFAULT_CURRENCY_DECIMALS;
   const multiplier = Math.pow(10, precision);
 
-  if (!value || !value.trim()) {
+  if (!value?.trim()) {
     return null;
   }
 
@@ -92,7 +92,7 @@ export function convertMoneyToMinorUnits(value, currency) {
   // Examples: "2,000,000.50" USD → ["2","000","000","50"] → last "50" (2 ≤ 2) = decimal
   //           "2,000,000" USD → ["2","000","000"] → last "000" (3 > 2) = thousands
   //           "9,500" KWD (3 dec) → ["9","500"] → last "500" (3 ≤ 3) = decimal
-  const lastPart = parts[parts.length - 1] ?? '';
+  const lastPart = parts.at(-1) ?? '';
   const lastPartIsDecimal = precision > 0 && parts.length > 1 && lastPart.length <= precision;
 
   let wholeStr, fractionStr;
@@ -108,7 +108,7 @@ export function convertMoneyToMinorUnits(value, currency) {
   }
 
   const whole = Number.parseInt(wholeStr, 10);
-  if (isNaN(whole)) return null;
+  if (Number.isNaN(whole)) return null;
 
   let fraction = 0;
 

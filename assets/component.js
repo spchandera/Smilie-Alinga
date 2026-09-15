@@ -329,7 +329,7 @@ function parseValue(str) {
   if (str === 'false') return false;
 
   const maybeNumber = Number(str);
-  if (!isNaN(maybeNumber) && str.trim() !== '') return maybeNumber;
+  if (!Number.isNaN(maybeNumber) && str.trim() !== '') return maybeNumber;
 
   return str;
 }

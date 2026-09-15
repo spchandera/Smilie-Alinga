@@ -27,9 +27,7 @@ export const MORPH_OPTIONS = {
     if (
       newNode instanceof HTMLTemplateElement &&
       newNode.shadowRootMode === 'open' &&
-      oldNode.parentElement &&
-      newNode.parentElement &&
-      oldNode.parentElement.tagName === newNode.parentElement.tagName &&
+      oldNode.parentElement?.tagName === newNode.parentElement?.tagName &&
       oldNode.parentElement?.shadowRoot != null
     ) {
       // Ignore template elements of components that are already initialized

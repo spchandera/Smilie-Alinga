@@ -224,10 +224,10 @@ export class ZoomDialog extends Component {
    * @param {ScrollBehavior} options.behavior - The behavior of the scroll.
    */
   async selectThumbnail(index, options = { behavior: 'smooth' }) {
-    if (!this.refs.thumbnails || !this.refs.thumbnails.children.length) return;
+    if (!this.refs.thumbnails?.children.length) return;
 
     // Guard if invalid
-    if (isNaN(index) || index < 0 || index >= this.refs.thumbnails.children.length) return;
+    if (Number.isNaN(index) || index < 0 || index >= this.refs.thumbnails.children.length) return;
 
     const { media, thumbnails } = this.refs;
     const targetThumbnail = thumbnails.children[index];

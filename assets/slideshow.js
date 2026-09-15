@@ -223,7 +223,7 @@ export class Slideshow extends Component {
     const { slides } = this;
 
     // Guard checks: no slides, invalid index, or selecting the same slide
-    if (!slides?.length || requestedIndex === undefined || isNaN(requestedIndex)) return;
+    if (!slides?.length || requestedIndex === undefined || Number.isNaN(requestedIndex)) return;
 
     const requestedSlideElement = slides?.[requestedIndex];
     if (currentSlide === requestedSlideElement) return;
@@ -921,7 +921,7 @@ export class Slideshow extends Component {
 
   #updateVisibleSlides() {
     const { slides } = this;
-    if (!slides || !slides.length) return 0;
+    if (!slides?.length) return 0;
 
     const visibleSlides = this.visibleSlides;
 

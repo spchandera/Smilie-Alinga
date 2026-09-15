@@ -618,7 +618,7 @@ export function parseIntOrDefault(value, defaultValue) {
     return defaultValue;
   }
   const parsed = Number.parseInt(value.toString());
-  return isNaN(parsed) ? defaultValue : parsed;
+  return Number.isNaN(parsed) ? defaultValue : parsed;
 }
 
 class Scheduler {
@@ -707,7 +707,7 @@ export function setHeaderMenuStyle() {
   if (headerComponent) {
     window.requestAnimationFrame(() => {
       const overflowList = headerComponent?.querySelector('overflow-list');
-      const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
+      const hasReachedMinimum = overflowList?.hasAttribute('minimum-reached');
       headerComponent.dataset.menuStyle = isTouchDevice() || hasReachedMinimum ? 'drawer' : 'menu';
     });
   }

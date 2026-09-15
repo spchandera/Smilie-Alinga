@@ -16,9 +16,9 @@ class QRCodeImage extends Component {
   connectedCallback() {
     super.connectedCallback();
     const widthAttribute = this.getAttribute('width') ?? '';
-    this.#width = isNaN(Number.parseInt(widthAttribute)) ? this.#width : Number.parseInt(widthAttribute);
+    this.#width = Number.isNaN(Number.parseInt(widthAttribute)) ? this.#width : Number.parseInt(widthAttribute);
     const heightAttribute = this.getAttribute('height') ?? '';
-    this.#height = isNaN(Number.parseInt(heightAttribute)) ? this.#height : Number.parseInt(heightAttribute);
+    this.#height = Number.isNaN(Number.parseInt(heightAttribute)) ? this.#height : Number.parseInt(heightAttribute);
     this.#alt = this.getAttribute('alt') ?? this.#alt;
 
     new QRCode(this, {

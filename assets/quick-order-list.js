@@ -46,9 +46,9 @@ class QuickOrderListComponent extends Component {
    * @returns {number}
    */
   get currentPage() {
-    if (this.refs.paginationNav && this.refs.paginationNav.dataset.current_page) {
+    if (this.refs.paginationNav?.dataset.current_page) {
       const pageNum = Number.parseInt(this.refs.paginationNav.dataset.current_page, 10);
-      if (!isNaN(pageNum)) {
+      if (!Number.isNaN(pageNum)) {
         return pageNum;
       }
     }

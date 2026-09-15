@@ -167,7 +167,7 @@ export class LayeredSlideshowComponent extends Component {
     const panel = /** @type {HTMLElement} */ (event.currentTarget);
     const focusable = this.#getFocusableElements(panel);
     const firstFocusable = focusable[0];
-    const lastFocusable = focusable[focusable.length - 1];
+    const lastFocusable = focusable.at(-1);
 
     if (event.shiftKey) {
       const isAtStart =
@@ -201,7 +201,7 @@ export class LayeredSlideshowComponent extends Component {
     if (!panel) return;
 
     const focusable = this.#getFocusableElements(panel);
-    const target = position === 'end' ? focusable[focusable.length - 1] : focusable[0];
+    const target = position === 'end' ? focusable.at(-1) : focusable[0];
 
     requestAnimationFrame(() => (target ?? panel).focus());
   }
