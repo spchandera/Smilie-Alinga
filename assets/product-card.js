@@ -146,7 +146,6 @@ export class ProductCard extends ProductCardLink {
     if (shouldOpenInNewTab) {
       event.preventDefault();
       window.open(url.href, '_blank');
-      return;
     } else {
       window.location.href = url.href;
     }

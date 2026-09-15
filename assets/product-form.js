@@ -440,8 +440,6 @@ class ProductFormComponent extends Component {
               productId: this.dataset.productId,
             })
           );
-
-          return;
         } else {
           const id = formData.get('id');
 

@@ -672,8 +672,6 @@ export function oncePerEditorSession(element, sessionKeyName, callback) {
   callback();
 
   if (isInThemeEditor) sessionStorage.setItem(uniqueSessionKey, 'true');
-
-  return;
 }
 
 /**

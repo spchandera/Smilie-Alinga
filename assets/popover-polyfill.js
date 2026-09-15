@@ -760,7 +760,6 @@ function apply() {
     if (invoker) {
       popoverTargetAttributeActivationBehavior(invoker);
       event.preventDefault();
-      return;
     }
   };
   const onKeydown = (event) => {
