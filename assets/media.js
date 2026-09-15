@@ -96,12 +96,15 @@ class DeferredMedia extends Component {
     /** @type {HTMLIFrameElement | null} */
     const iframe = this.querySelector('iframe[data-video-type]');
     if (iframe) {
-      iframe.contentWindow?.postMessage(
-        iframe.dataset.videoType === 'youtube'
-          ? '{"event":"command","func":"playVideo","args":""}'
-          : '{"method":"play"}',
-        '*'
-      );
+      const targetOrigin = this.#getIframeOrigin(iframe);
+      if (targetOrigin) {
+        iframe.contentWindow?.postMessage(
+          iframe.dataset.videoType === 'youtube'
+            ? '{"event":"command","func":"playVideo","args":""}'
+            : '{"method":"play"}',
+          targetOrigin
+        );
+      }
     } else {
       this.querySelector('video')?.play();
     }
@@ -117,12 +120,15 @@ class DeferredMedia extends Component {
     const iframe = this.querySelector('iframe[data-video-type]');
 
     if (iframe) {
-      iframe.contentWindow?.postMessage(
-        iframe.dataset.videoType === 'youtube'
-          ? '{"event":"command","func":"' + 'pauseVideo' + '","args":""}'
-          : '{"method":"pause"}',
-        '*'
-      );
+      const targetOrigin = this.#getIframeOrigin(iframe);
+      if (targetOrigin) {
+        iframe.contentWindow?.postMessage(
+          iframe.dataset.videoType === 'youtube'
+            ? '{"event":"command","func":"' + 'pauseVideo' + '","args":""}'
+            : '{"method":"pause"}',
+          targetOrigin
+        );
+      }
     } else {
       this.querySelector('video')?.pause();
     }
@@ -131,6 +137,22 @@ class DeferredMedia extends Component {
     // If we've already revealed the deferred media, we should toggle the play/pause hint
     if (this.getAttribute('data-media-loaded')) {
       this.updatePlayPauseHint(this.isPlaying);
+    }
+  }
+
+  /**
+   * Resolves the origin the embedded video iframe was actually loaded from (e.g. YouTube or
+   * Vimeo), so postMessage calls can target that origin explicitly instead of using '*', which
+   * would let the message be delivered to any origin the iframe happens to be navigated to.
+   * @param {HTMLIFrameElement} iframe
+   * @returns {string | null}
+   */
+  #getIframeOrigin(iframe) {
+    if (!iframe.src) return null;
+    try {
+      return new URL(iframe.src).origin;
+    } catch {
+      return null;
     }
   }
 }
