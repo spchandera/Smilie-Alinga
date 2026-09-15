@@ -8,7 +8,7 @@
  * @see https://popover.oddbird.net/
  */
 
-var ToggleEvent = class extends Event {
+const ToggleEvent = class extends Event {
   oldState;
   newState;
   constructor(type, { oldState = '', newState = '', ...init } = {}) {
@@ -17,7 +17,7 @@ var ToggleEvent = class extends Event {
     this.newState = String(newState || '');
   }
 };
-var popoverToggleTaskQueue = /* @__PURE__ */ new WeakMap();
+const popoverToggleTaskQueue = /* @__PURE__ */ new WeakMap();
 function queuePopoverToggleEventTask(element, oldState, newState) {
   popoverToggleTaskQueue.set(
     element,
@@ -35,16 +35,16 @@ function queuePopoverToggleEventTask(element, oldState, newState) {
 }
 
 // src/popover-helpers.ts
-var ShadowRoot = globalThis.ShadowRoot || function () {};
-var HTMLDialogElement = globalThis.HTMLDialogElement || function () {};
-var topLayerElements = /* @__PURE__ */ new WeakMap();
-var autoPopoverList = /* @__PURE__ */ new WeakMap();
-var hintPopoverList = /* @__PURE__ */ new WeakMap();
-var visibilityState = /* @__PURE__ */ new WeakMap();
+const ShadowRoot = globalThis.ShadowRoot || function () {};
+const HTMLDialogElement = globalThis.HTMLDialogElement || function () {};
+const topLayerElements = /* @__PURE__ */ new WeakMap();
+const autoPopoverList = /* @__PURE__ */ new WeakMap();
+const hintPopoverList = /* @__PURE__ */ new WeakMap();
+const visibilityState = /* @__PURE__ */ new WeakMap();
 function getPopoverVisibilityState(popover) {
   return visibilityState.get(popover) || 'hidden';
 }
-var popoverInvoker = /* @__PURE__ */ new WeakMap();
+const popoverInvoker = /* @__PURE__ */ new WeakMap();
 function lastSetElement(set) {
   return [...set].pop();
 }
@@ -245,10 +245,10 @@ function focusDelegate(focusTarget) {
   }
 }
 function popoverFocusingSteps(subject) {
-  var _a;
+  let _a;
   (_a = focusDelegate(subject)) == null ? void 0 : _a.focus();
 }
-var previouslyFocusedElements = /* @__PURE__ */ new WeakMap();
+const previouslyFocusedElements = /* @__PURE__ */ new WeakMap();
 function showPopover(element) {
   if (!checkPopoverValidity(element, false)) {
     return;
@@ -328,7 +328,7 @@ function showPopover(element) {
   queuePopoverToggleEventTask(element, 'closed', 'open');
 }
 function hidePopover(element, focusPreviousElement = false, fireEvents = false) {
-  var _a, _b;
+  let _a, _b;
   if (!checkPopoverValidity(element, true)) {
     return;
   }
@@ -415,7 +415,7 @@ function hidePopoverStackUntil(endpoint, set, focusPreviousElement, fireEvents) 
   }
 }
 function hideAllPopoversUntil(endpoint, focusPreviousElement, fireEvents) {
-  var _a, _b;
+  let _a, _b;
   const document2 = endpoint.ownerDocument || endpoint;
   if (endpoint instanceof Document) {
     return closeAllOpenPopovers(document2, focusPreviousElement, fireEvents);
@@ -434,7 +434,7 @@ function hideAllPopoversUntil(endpoint, focusPreviousElement, fireEvents) {
   }
   hidePopoverStackUntil(endpoint, autoPopoverList.get(document2), focusPreviousElement, fireEvents);
 }
-var popoverPointerDownTargets = /* @__PURE__ */ new WeakMap();
+const popoverPointerDownTargets = /* @__PURE__ */ new WeakMap();
 function lightDismissOpenPopovers(event) {
   if (!event.isTrusted) return;
   const target = event.composedPath()[0];
@@ -453,7 +453,7 @@ function lightDismissOpenPopovers(event) {
     }
   }
 }
-var initialAriaExpandedValue = /* @__PURE__ */ new WeakMap();
+const initialAriaExpandedValue = /* @__PURE__ */ new WeakMap();
 function setInvokerAriaExpanded(el, force = false) {
   if (!el) return;
   if (!initialAriaExpandedValue.has(el)) {
@@ -473,7 +473,7 @@ function setInvokerAriaExpanded(el, force = false) {
 }
 
 // src/popover.ts
-var ShadowRoot2 = globalThis.ShadowRoot || function () {};
+const ShadowRoot2 = globalThis.ShadowRoot || function () {};
 function isSupported() {
   return (
     typeof HTMLElement !== 'undefined' &&
@@ -489,7 +489,7 @@ function patchSelectorFn(object, name, mapper) {
     },
   });
 }
-var nonEscapedPopoverSelector = /(^|[^\\]):popover-open\b/g;
+const nonEscapedPopoverSelector = /(^|[^\\]):popover-open\b/g;
 function hasLayerSupport() {
   return typeof globalThis.CSSLayerBlockRule === 'function';
 }
@@ -559,7 +559,7 @@ ${useLayer ? '@layer popover-polyfill {' : ''}
 ${useLayer ? '}' : ''}
 `;
 }
-var popoverStyleSheet = null;
+let popoverStyleSheet = null;
 function injectStyles(root) {
   const styles = getStyles();
   if (popoverStyleSheet === null) {
@@ -754,7 +754,7 @@ function apply() {
       return;
     }
     const invoker = composedPath.find((el) => {
-      var _a;
+      let _a;
       return (_a = el.matches) == null ? void 0 : _a.call(el, '[popovertargetaction],[popovertarget]');
     });
     if (invoker) {
