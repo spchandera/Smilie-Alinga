@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Shopify CLI
+.shopify/
+*.sublime-*
+
+# Env / secrets
+.env
+.env.*
+
+# Logs
+*.log
+
+# Node (in case theme tooling is added later)
+node_modules/
