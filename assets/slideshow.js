@@ -111,7 +111,7 @@ export class Slideshow extends Component {
       queueMicrotask(() => {
         // Only select if the component is connected and initialized
         if (!this.isConnected || !this.#scroll || !this.refs.slides) return;
-        const index = parseInt(newValue, 10) || 0;
+        const index = Number.parseInt(newValue, 10) || 0;
         const slide_id = this.refs.slides[index]?.getAttribute('slide-id');
         if (slide_id) {
           this.select({ id: slide_id }, undefined, { animate: false });
@@ -203,7 +203,7 @@ export class Slideshow extends Component {
     // Figure out the raw desired index (could be -1 if user is on first slide and clicks prev)
     let requestedIndex = (() => {
       if (typeof input === 'number') return input;
-      if (typeof input === 'string') return parseInt(input, 10);
+      if (typeof input === 'string') return Number.parseInt(input, 10);
       if ('id' in input) {
         const requestedSlide = this.refs.slides.find((slide) => slide.getAttribute('slide-id') == input.id);
 
@@ -396,7 +396,7 @@ export class Slideshow extends Component {
 
   get autoplayInterval() {
     const interval = this.getAttribute('autoplay');
-    const value = parseInt(`${interval}`, 10);
+    const value = Number.parseInt(`${interval}`, 10);
 
     if (Number.isNaN(value)) return undefined;
 
@@ -828,7 +828,7 @@ export class Slideshow extends Component {
     const initialSlide = this.getAttribute('initial-slide');
     if (initialSlide == null) return 0;
 
-    return parseInt(initialSlide, 10);
+    return Number.parseInt(initialSlide, 10);
   }
 
   /**

@@ -107,14 +107,14 @@ export function convertMoneyToMinorUnits(value, currency) {
     fractionStr = '';
   }
 
-  const whole = parseInt(wholeStr, 10);
+  const whole = Number.parseInt(wholeStr, 10);
   if (isNaN(whole)) return null;
 
   let fraction = 0;
 
   if (precision > 0 && fractionStr) {
     const fractionStrLength = fractionStr.length;
-    fraction = parseInt(fractionStr, 10) || 0;
+    fraction = Number.parseInt(fractionStr, 10) || 0;
     fraction = fraction * Math.pow(10, precision - fractionStrLength);
   }
 

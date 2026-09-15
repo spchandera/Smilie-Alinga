@@ -493,8 +493,8 @@ export function getIOSVersion() {
 
   return {
     fullString: version.replace('_', '.'),
-    major: parseInt(major, 10),
-    minor: minor ? parseInt(minor, 10) : 0,
+    major: Number.parseInt(major, 10),
+    minor: minor ? Number.parseInt(minor, 10) : 0,
   };
 }
 
@@ -528,18 +528,18 @@ function getCardsToAnimate(grid, cards) {
   const gridStyle = getComputedStyle(grid);
 
   const galleryAspectRatio = cardSample?.refs?.cardGallery?.style.getPropertyValue('--gallery-aspect-ratio') || '';
-  let aspectRatio = parseFloat(galleryAspectRatio) || 0.5;
+  let aspectRatio = Number.parseFloat(galleryAspectRatio) || 0.5;
   if (galleryAspectRatio?.includes('/')) {
     const [width = '1', height = '2'] = galleryAspectRatio.split('/');
-    aspectRatio = parseInt(width, 10) / parseInt(height, 10);
+    aspectRatio = Number.parseInt(width, 10) / Number.parseInt(height, 10);
   }
 
-  const cardGap = parseInt(cardSample?.refs?.productCardLink?.style.getPropertyValue('--product-card-gap') || '') || 12;
-  const gridGap = parseInt(gridStyle.getPropertyValue('--product-grid-gap')) || 12;
+  const cardGap = Number.parseInt(cardSample?.refs?.productCardLink?.style.getPropertyValue('--product-card-gap') || '') || 12;
+  const gridGap = Number.parseInt(gridStyle.getPropertyValue('--product-grid-gap')) || 12;
 
   // Assume only a couple of lines of text in the card details (title and price).
   // If the title wraps into more lines, we might just animate more cards, but that's fine.
-  const detailsSize = ((parseInt(gridStyle.fontSize) || 16) + 2) * 2;
+  const detailsSize = ((Number.parseInt(gridStyle.fontSize) || 16) + 2) * 2;
 
   const isMobile = window.innerWidth < 750;
 
@@ -617,7 +617,7 @@ export function parseIntOrDefault(value, defaultValue) {
   if (value === null || value === undefined || value === '') {
     return defaultValue;
   }
-  const parsed = parseInt(value.toString());
+  const parsed = Number.parseInt(value.toString());
   return isNaN(parsed) ? defaultValue : parsed;
 }
 

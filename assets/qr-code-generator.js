@@ -1534,7 +1534,7 @@ function getTypeNumber(sText, nCorrectLevel) {
 function getUTF8Length(sText) {
   const replacedText = encodeURI(sText)
     .toString()
-    .replace(/\%[0-9a-fA-F]{2}/g, 'a');
+    .replace(/%[0-9a-fA-F]{2}/g, 'a');
 
   // If the encoded and replaced text length differs from original,
   // it means we have non-ASCII characters, so add 3 bytes for UTF-8 BOM

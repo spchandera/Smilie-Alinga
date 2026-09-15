@@ -296,7 +296,7 @@ function calculatePaddingStart(element, axis) {
   const computedStyle = getComputedStyle(element);
   const value = axis === 'x' ? computedStyle.paddingInlineStart : computedStyle.paddingBlockStart;
 
-  return parseFloat(value);
+  return Number.parseFloat(value);
 }
 
 /**

@@ -152,7 +152,7 @@ export class OverflowList extends DeclarativeShadowElement {
    */
   get minimumItems() {
     const value = this.getAttribute('minimum-items');
-    return value ? parseInt(value, 10) : null;
+    return value ? Number.parseInt(value, 10) : null;
   }
 
   get overflowSlot() {

@@ -518,7 +518,7 @@ export class LayeredSlideshowComponent extends Component {
       // Temporarily clear inline style to measure CSS-defined min-height
       const savedMinHeight = this.style.minHeight;
       this.style.minHeight = '';
-      const cssMinHeight = parseFloat(getComputedStyle(this).minHeight) || 0;
+      const cssMinHeight = Number.parseFloat(getComputedStyle(this).minHeight) || 0;
       this.style.minHeight = savedMinHeight;
 
       // Only set inline heights when content exceeds CSS min-height
@@ -552,7 +552,7 @@ export class LayeredSlideshowComponent extends Component {
       // CSS variable is set on component, try reading from container (inherited) or component directly
       const inheritedValue = containerStyles.getPropertyValue('--layered-panel-height-mobile');
       const componentValue = getComputedStyle(this).getPropertyValue('--layered-panel-height-mobile');
-      minPanelHeight = parseFloat(inheritedValue || componentValue) || 260;
+      minPanelHeight = Number.parseFloat(inheritedValue || componentValue) || 260;
     }
 
     const requiredActiveHeight = Math.max(minPanelHeight, contentHeight);
@@ -585,8 +585,8 @@ export class LayeredSlideshowComponent extends Component {
       inner.style.height = 'auto';
 
       const styles = getComputedStyle(content);
-      const paddingTop = parseFloat(styles.paddingBlockStart || styles.paddingTop) || 0;
-      const paddingBottom = parseFloat(styles.paddingBlockEnd || styles.paddingBottom) || 0;
+      const paddingTop = Number.parseFloat(styles.paddingBlockStart || styles.paddingTop) || 0;
+      const paddingBottom = Number.parseFloat(styles.paddingBlockEnd || styles.paddingBottom) || 0;
 
       const height = (inner.scrollHeight || 0) + paddingTop + paddingBottom;
       if (height > max) max = height;

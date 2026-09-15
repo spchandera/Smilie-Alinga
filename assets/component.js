@@ -248,7 +248,7 @@ function registerEventListeners() {
         let [selector, method] = value.split('/');
         // Extract the last segment of the attribute value delimited by `?` or `/`
         // Do not use lookback for Safari 16.0 compatibility
-        const matches = value.match(/([\/\?][^\/\?]+)([\/\?][^\/\?]+)$/);
+        const matches = value.match(/([/?][^/?]+)([/?][^/?]+)$/);
         const data = matches ? matches[2] : null;
         const instance = selector
           ? selector.startsWith('#')

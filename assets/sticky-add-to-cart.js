@@ -330,7 +330,7 @@ class StickyAddToCartComponent extends Component {
    * Gets the initial quantity from the data attribute
    */
   #getInitialQuantity() {
-    this.#currentQuantity = parseInt(this.dataset.initialQuantity || '1') || 1;
+    this.#currentQuantity = Number.parseInt(this.dataset.initialQuantity || '1') || 1;
     this.#updateButtonText();
   }
 

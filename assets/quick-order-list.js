@@ -47,7 +47,7 @@ class QuickOrderListComponent extends Component {
    */
   get currentPage() {
     if (this.refs.paginationNav && this.refs.paginationNav.dataset.current_page) {
-      const pageNum = parseInt(this.refs.paginationNav.dataset.current_page, 10);
+      const pageNum = Number.parseInt(this.refs.paginationNav.dataset.current_page, 10);
       if (!isNaN(pageNum)) {
         return pageNum;
       }
@@ -297,7 +297,7 @@ class QuickOrderListComponent extends Component {
     if (!variantId) return;
 
     const quantityInput = /** @type {HTMLInputElement|null} */ (variantRow.querySelector('input[data-cart-quantity]'));
-    const currentCartQuantity = quantityInput ? parseInt(quantityInput.dataset.cartQuantity || '0') || 0 : 0;
+    const currentCartQuantity = quantityInput ? Number.parseInt(quantityInput.dataset.cartQuantity || '0') || 0 : 0;
 
     this.#clearSuccessMessage();
     this.#clearErrorMessage();

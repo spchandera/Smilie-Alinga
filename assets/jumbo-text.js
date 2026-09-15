@@ -73,7 +73,7 @@ class JumboText extends Component {
       return;
     }
 
-    const currentFontSize = parseFloat(window.getComputedStyle(firstPassWidestChild).fontSize);
+    const currentFontSize = Number.parseFloat(window.getComputedStyle(firstPassWidestChild).fontSize);
     const firstPassFontSize = Math.round(((currentFontSize * containerWidth) / firstPassWidestChildWidth) * 100) / 100;
 
     // Disconnect the resize observer

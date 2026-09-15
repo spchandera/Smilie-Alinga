@@ -566,7 +566,7 @@ class SwatchesVariantPickerComponent extends VariantPicker {
     // Check if this is a swatch input
     const isSwatchInput = event.target instanceof HTMLInputElement && event.target.name?.includes('-swatch');
     const clickedSwatch = event.target;
-    const availableCount = parseInt(clickedSwatch.dataset.availableCount || '0');
+    const availableCount = Number.parseInt(clickedSwatch.dataset.availableCount || '0');
     const firstAvailableVariantId = clickedSwatch.dataset.firstAvailableOrFirstVariantId;
 
     // For swatch inputs, check if we need special handling

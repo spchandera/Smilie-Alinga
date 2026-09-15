@@ -813,7 +813,7 @@ class FacetStatusComponent extends Component {
 
     // Last resort: clean and parse as integer
     const cleanFallback = fallback.replace(/[^\d]/g, '');
-    return parseInt(cleanFallback, 10) || 0;
+    return Number.parseInt(cleanFallback, 10) || 0;
   }
 
   /**
