@@ -25,7 +25,9 @@ class VolumePricingInfoComponent extends Component {
           if (anchoredPopover.isConnected) {
             try {
               anchoredPopover.updatedCallback();
-            } catch (e) {}
+            } catch (e) {
+              console.error(e);
+            }
           }
         });
       }

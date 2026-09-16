@@ -593,7 +593,7 @@ class ProductFormComponent extends Component {
   #updateQuantityLabel(cartQty) {
     const quantityLabel = this.refs.quantityLabelCartCount;
     if (quantityLabel) {
-      const inCartText = quantityLabel.textContent?.match(/\((\d+)\s+(.+)\)/);
+      const inCartText = quantityLabel.textContent?.match(/\((\d+)\s+([^)]+)\)/);
       if (inCartText?.[2]) {
         quantityLabel.textContent = `(${cartQty} ${inCartText[2]})`;
       }
@@ -660,7 +660,7 @@ class ProductFormComponent extends Component {
     if (!currentAddToCartButtonContainer || (!currentAddToCartButton && !acceleratedCheckoutButtonContainer)) return;
 
     // Update the button state
-    if (event.detail.resource == null || event.detail.resource.available == false) {
+    if (event.detail.resource == null || event.detail.resource.available === false) {
       currentAddToCartButtonContainer.disable();
     } else {
       currentAddToCartButtonContainer.enable();
@@ -672,7 +672,7 @@ class ProductFormComponent extends Component {
     }
 
     if (acceleratedCheckoutButtonContainer) {
-      if (event.detail.resource == null || event.detail.resource.available == false) {
+      if (event.detail.resource == null || event.detail.resource.available === false) {
         acceleratedCheckoutButtonContainer?.setAttribute('hidden', 'true');
       } else {
         acceleratedCheckoutButtonContainer?.removeAttribute('hidden');
