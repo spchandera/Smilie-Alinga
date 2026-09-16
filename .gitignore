@@ -19,6 +19,7 @@ Thumbs.db
 
 # Node (in case theme tooling is added later)
 node_modules/
+coverage/
 
 # Local Claude Code settings
 .claude/
